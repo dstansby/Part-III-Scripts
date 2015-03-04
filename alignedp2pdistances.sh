@@ -1,13 +1,14 @@
 #! /bin/bash
 
-mkdir done notpicked
-#rm differnces.dat
-#echo "EpiDistance deltaT" > differences.dat
+# Script to pick a single point and output the time to file. Point is stored in t8.
 
+mkdir done notpicked
+
+# Loop through each seismogram
 for seis in `ls *fil`
 do
-	# Epicentral distance
-	 echo echo on > sacmac.m
+	# Get epicentral distance
+	echo echo on > sacmac.m
         echo rh $seis >> sacmac.m
 	echo "setbb stat &1,kstnm&" >> sacmac.m
 	echo "setbb gcarc &1,gcarc&" >> sacmac.m
@@ -22,7 +23,7 @@ do
 
 	echo $gcarc
 
-	# Pick phases
+	# Pick phase
 echo "rh $seis
 qdp off
  setbb vert $seis
@@ -30,7 +31,7 @@ qdp off
  writehdr
  r %vert
  xlim -5 5
- sc echo \"Left upswing t8, then press q\"
+ sc echo \"Left feature t8, then press q\"
  ppk bell off
  writehdr"  >> tempmac
 
@@ -42,10 +43,9 @@ qdp off
         rm -fr tempmac
 
         # Extract picked phases
-        PKIKPobs=`awk '{print $1}' temp.dat`
         diff=`awk '{print -$1}' temp.dat`
 
-	if [ $PKIKPobs == -12345 ]; then
+	if [ $diff == 12345 ]; then
 		echo "Not picked"
 		mv $seis notpicked
 	else
