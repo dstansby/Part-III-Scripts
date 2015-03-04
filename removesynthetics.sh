@@ -9,15 +9,15 @@ mkdir keep norealdata
 
 for seis in *.wkbj_fil
 do
-	#Extract characters 10-14
-	file=${seis:10:4}
+	#Extract characters 10-15
+	file=${seis:10:5}
 	echo $file
 
 	if [ -e ../../../filt/*"$file"* ]; then
-		mv $i keep
+		mv $seis keep
 	else
 		echo "Removing"
-		mv $i norealdata
+		mv $seis norealdata
 	fi
 done
 
