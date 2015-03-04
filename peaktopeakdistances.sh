@@ -1,13 +1,16 @@
 #! /bin/bash
-
+# peaktopeakdistances.sh
+#
+# Runs through seismograms and allows user to pick two features.
+# Difference in time is recorded to file
+#
+# David Stansby 2015
 mkdir done notpicked
-#rm differnces.dat
-#echo "EpiDistance deltaT" > differences.dat
 
 for seis in `ls *fil`
 do
-	# Epicentral distance
-	 echo echo on > sacmac.m
+	# Get epicentral distance
+	echo echo on > sacmac.m
         echo rh $seis >> sacmac.m
 	echo "setbb stat &1,kstnm&" >> sacmac.m
 	echo "setbb gcarc &1,gcarc&" >> sacmac.m
@@ -29,8 +32,8 @@ qdp off
  rh %vert
  writehdr
  r %vert
-# xlim T2 -10 10
- sc echo \"Left upswing t8, Right upswing t9, then press q\"
+ xlim T2 -20 20
+ sc echo \"Left feature t8, Right feature t9, then q\"
  ppk bell off
  writehdr"  >> tempmac
 
@@ -46,6 +49,7 @@ qdp off
         PKIKPobs=`awk '{print $2}' temp.dat`
         diff=`awk '{print $2-$1}' temp.dat`
 
+	# If either feature not picked
 	if [ $pkikpobs == -12345 ] || [ $PKIKPobs == -12345 ]; then
 		echo "Not picked"
 		mv $seis notpicked
