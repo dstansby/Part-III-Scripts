@@ -1,17 +1,22 @@
 #!/bin/bash
 #
 # doalignallPKIKPreal.sh
+#
 # Aligns real seismogram data to picked PKiKP point
 # Run from a folder with filtered data
 #
 # David Stansby 2015
+
 mkdir done remove
 
+# If only one command line argument
 if [ "$#" == "1" ]; then
         echo "Please provide both a minimum and maximum angle as command line arguments"
         exit
 fi
-if [ "$#" -ge "3" ]; then
+
+# If more than two command line arguments
+if [ "$#" -gt "3" ]; then
 	echo "Too many arguments, try again with minimum and maximum angle"
 fi
 
@@ -48,6 +53,7 @@ do
         	fi
 		rm -f tempmac seisdetails.dat
 	fi
+# Pick (stored in t6)
 echo echo on > tempmac
 echo "rh $seis
  qdp off
@@ -97,4 +103,4 @@ echo "rh $seis
 done
 
 mv done/* .
-rm -fr done
+rm -r done
