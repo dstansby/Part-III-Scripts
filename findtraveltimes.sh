@@ -1,10 +1,10 @@
 #!/bin/bash
-
-# this is a now fairly general script that runs taup_time for a range of epicentral distances and sticks it an output file
-
+#
+# This is a now fairly general script that runs taup_time for a range of epicentral distances and sticks it an output file
+#
 # Note that it does not consider the ellipticity of the Earth
-rm -fr tauptraveltimecurve sacmac.m test.dat
 
+rm -fr tauptraveltimecurve sacmac.m test.dat
 
 ls *fil > test
 one=`awk 'NR==1 {print $1}' test`
@@ -44,7 +44,6 @@ stepsize='0.1'
 steps=`echo $deltagcarc/$stepsize | bc`
 
 # Move files as we go
-
 mkdir tauptraveltimecurve
 taup_curve -pf /raid1/ds598/scripts/phasefile.txt -h ${depth} -mod ${model} -o ${model}_${depth}_all.xy
 mv ${model}_${depth}_all.xy.gmt ${model}_${depth}_all.txt

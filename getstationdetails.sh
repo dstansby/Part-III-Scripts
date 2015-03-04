@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#Script to determine hemispheres. Do loop over *fil files, sac macro to obtain headers, TauP to get pierce points, if loop to determine which hemisphere.
+# Script to determine hemispheres. Do loop over *fil files, sac macro to obtain headers, TauP to get pierce points, if loop to determine which hemisphere.
 
 rm -f≈y sacmac.m stationdetails.dat seisdetails.dat output.dat timedetails.dat
 
