@@ -1,10 +1,16 @@
 #! /bin/bash
-mkdir keep
-mkdir norealdata
+# removesynthetics.sh
+#
+# Moves synthetics to ./norealdata if there isn't a corresponding real sesimogram
+#
+# David Stansby 2015
 
-for i in *.wkbj_fil
+mkdir keep norealdata
+
+for seis in *.wkbj_fil
 do
-	file=${i:10:4}
+	#Extract characters 10-14
+	file=${seis:10:4}
 	echo $file
 
 	if [ -e ../../../filt/*"$file"* ]; then
