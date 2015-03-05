@@ -7,6 +7,11 @@
 #
 # David Stansby 2015
 
+# Set thes to the phases that need to be automatically aligned
+# (ie. phases not being aligned)
+align1=both
+align2=PKiKP
+
 mkdir done
 
 for seis in *fil
@@ -35,7 +40,7 @@ echo "rh $seis
 	rm tempmac
 	time=`awk '{print $1}' seisdetails.dat`
 
-	for file in $seis ../../both/filt/$seis ../../PKIKP/filt/$seis
+	for file in $seis ../../$align1/filt/$seis ../../$align2/filt/$seis
 	do
 		# Change time in header files
 		echo echo on > tempmac
