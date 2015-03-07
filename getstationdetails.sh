@@ -2,7 +2,7 @@
 
 # Script to determine hemispheres. Do loop over *fil files, sac macro to obtain headers, TauP to get pierce points, if loop to determine which hemisphere.
 
-rm -f≈y sacmac.m stationdetails.dat seisdetails.dat output.dat timedetails.dat
+rm  sacmac.m stationdetails.dat seisdetails.dat output.dat
 
 for file in filt/*fil
 do
@@ -58,8 +58,7 @@ do
 		intime=`awk '{if ( NR ==2 ) print $3}' output.dat`
 		outtime=`awk '{if ( NR ==3 ) print $3}' output.dat`
 
-		echo $gcarc $stat $stla $stlo $evla $evlo $depth $inlat $inlon $outlat $outlon $turnlat $turnlon $turndep >> stationdetails.dat
-		echo $intime $outtime >> timedetails.dat
+		echo $gcarc $stat $stla $stlo $evla $evlo $depth $inlat $inlon $outlat $outlon $turnlat $turnlon $turndep $intime $outtime >> stationdetails.dat
 		#echo $evla $evlo > $cmtcode.dat
 	done
 	rm  seisdetails.dat sacmac.m output.dat
