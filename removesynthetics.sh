@@ -5,21 +5,27 @@
 #
 # David Stansby 2015
 
-mkdir keep norealdata
-
-for seis in *.wkbj_fil
+for folder in both PKIKP PKiKP
 do
-	#Extract characters 10-15
-	file=${seis:10:5}
-	echo $file
+	cd wkbj/$folder/filt
+	mkdir keep norealdata
 
-	if [ -e ../../../filt/*"$file"* ]; then
-		mv $seis keep
-	else
-		echo "Removing"
-		mv $seis norealdata
-	fi
+	for seis in *.wkbj_fil
+	do
+		#Extract characters 10-15
+		file=${seis:10:5}
+		echo $file
+
+		if [ -e ../../../filt/*"$file"* ]; then
+			mv $seis keep
+		else
+			echo "Removing"
+			mv $seis norealdata
+		fi
+	done
+
+	mv keep/* .
+	rm -r keep
+
+	cd ../../../
 done
-
-mv keep/* .
-rm -r keep
