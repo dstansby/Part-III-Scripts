@@ -3,6 +3,7 @@
 # Script to pick a single point and output the time to file. Point is stored in t8.
 
 mkdir done notpicked
+rm tempmac temp.dat
 
 # Loop through each seismogram
 for seis in `ls *fil`
