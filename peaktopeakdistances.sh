@@ -54,7 +54,7 @@ qdp off
 		echo "Not picked"
 		mv $seis notpicked
 	else
-        	echo "$stat $gcarc $diff" >> differences.dat
+        	echo "$stat $gcarc $diff" >> peakdifferences.dat
 		mv $seis done
 	fi
 done
