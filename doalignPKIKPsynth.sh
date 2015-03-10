@@ -17,7 +17,7 @@ mkdir done
 for seis in *fil
 do
 
-	rm -f tempmac seisdetails.dat
+	rm  tempmac seisdetails.dat
 
 	# Pick phase (stored in t6)
 	echo echo on > tempmac

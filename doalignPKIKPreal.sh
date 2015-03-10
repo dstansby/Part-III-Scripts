@@ -35,7 +35,7 @@ do
        	/usr/local/sac/bin/sac sacmac.m
        	rm -fr sacmac.m
        	gcarc=`awk '{print $1}' seisdetails.dat`
-       	rm -fr seisdetails.dat
+       	rm seisdetails.dat
 
        	# Extract first three digits of angle
        	gcarc=${gcarc:0:3}
@@ -51,7 +51,7 @@ do
         	if [ $gcarc -gt $maxangle ]; then
         	        continue
         	fi
-		rm -f tempmac seisdetails.dat
+		rm tempmac seisdetails.dat
 	fi
 # Pick (stored in t6)
 echo echo on > tempmac
@@ -71,7 +71,7 @@ echo "rh $seis
 	echo quit >> tempmac
 
 	/usr/local/sac/bin/sac tempmac
-	rm -f tempmac
+	rm tempmac
 	time=`awk '{print $1}' seisdetails.dat`
 
 	if [ "$time" == "-12345" ]; then
@@ -94,9 +94,7 @@ echo "rh $seis
 		echo "quit" >> tempmac
 
 		/usr/local/sac/bin/sac tempmac
-		rm tempmac
-
-		rm -fr seisdetails.dat
+		rm tempmac seisdetails.dat
 		echo "Done!"
 		mv $seis done
 	fi
