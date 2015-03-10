@@ -16,7 +16,7 @@ nmax=`wc -l <  stationdetails.dat`
 echo 0 0  | psxy -R1/2/1/2 -JX4.25/6.25 -Sp -K > map.ps
 
 #Make colour palete
-makecpt -Cpolar -T-1.2/1.2/0.1 -Z > g.cpt
+makecpt -Cpolar -T-0.6/0.6/0.1 -Z > g.cpt
 
 #Plot coast
 pscoast  $proj -Bg45/g45:."": -Y1  -Dc -W0.0001p/210 -G220 $o >> map.ps
@@ -32,7 +32,7 @@ if [ -f filt/differences.dat ] && [ -f wkbj/both/filt/differences.dat ]; then
 	paste -d " " stationdetails.dat filt/differences.dat wkbj/both/filt/differences.dat > temp.dat
 
 	#Plot bottoming points
-	awk '{ print $13, $12, $17-$20, 0.2,"c" }' temp.dat | psxy $proj  -Cg.cpt -S $o >> map.ps
+	awk '{ print $13, $12, $19-$22, 0.2,"c" }' temp.dat | psxy $proj  -Cg.cpt -S $o >> map.ps
 
 	#Plot scale + key
 	psscale -Cg.cpt -D12c/-0.5c/8c/0.6ch -X0.36 -B0.5:"Differential travel time residuals (s)": $o >>map.ps
