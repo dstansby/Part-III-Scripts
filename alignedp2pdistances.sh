@@ -46,7 +46,7 @@ qdp off
         rm -fr tempmac
 
         # Extract picked phases
-        diff=`awk '{print -$1}' temp.dat`
+        diff=`awk '{print $1}' temp.dat`
 
 	if [ $diff == 12345 ]; then
 		echo "Not picked"
