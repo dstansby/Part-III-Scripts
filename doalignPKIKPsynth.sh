@@ -9,7 +9,7 @@
 
 # Set thes to the phases that need to be automatically aligned
 # (ie. phases not being aligned)
-align1=both
+align1=PKIKP
 align2=PKiKP
 
 mkdir done
