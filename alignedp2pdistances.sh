@@ -34,7 +34,7 @@ qdp off
  writehdr
  r %vert
  xlim -5 5
- sc echo \"Left feature t8, then press q\"
+ sc echo \"Right downswing t8, then press q\"
  ppk bell off
  writehdr"  >> tempmac
 
@@ -50,10 +50,10 @@ qdp off
 
 	if [ $diff == -12345 ]; then
 		echo "Not picked"
-		mv $seis notpicked
+		mv $seis notpicked/
 	else
         	echo "$stat $gcarc $diff" >> differences.dat
-		mv $seis done
+		mv $seis done/
 	fi
 done
 
