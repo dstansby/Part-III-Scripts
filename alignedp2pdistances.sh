@@ -48,7 +48,7 @@ qdp off
         # Extract picked phases
         diff=`awk '{print $1}' temp.dat`
 
-	if [ $diff == 12345 ]; then
+	if [ $diff == -12345 ]; then
 		echo "Not picked"
 		mv $seis notpicked
 	else
