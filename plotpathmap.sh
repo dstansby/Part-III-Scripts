@@ -16,7 +16,11 @@ nmax=`wc -l <  stationdetails.dat`
 echo 0 0  | psxy -R1/2/1/2 -JX4.25/6.25 -Sp -K > map.ps
 
 #Make colour palete
-makecpt -Cpolar -T-0.6/0.6/0.1 -Z > g.cpt
+if [ "$#" == 1 ]; then
+	makecpt -Cpolar -T-$1/$1/0.1 -Z > g.cpt
+else
+	makecpt -Cpolar -T-1.2/1.2/0.1 -Z > g.cpt
+fi
 
 #Plot coast
 pscoast  $proj -Bg45/g45:."": -Y1  -Dc -W0.0001p/210 -G220 $o >> map.ps
