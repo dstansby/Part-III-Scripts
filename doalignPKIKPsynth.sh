@@ -7,17 +7,58 @@
 #
 # David Stansby 2015
 
-# Set thes to the phases that need to be automatically aligned
+# Set these to the phases that need to be automatically aligned
 # (ie. phases not being aligned)
 align1=PKIKP
 align2=PKiKP
 
+minangle=$1
+maxangle=$2
+
+# If only one command line argument
+if [ "$#" == "1" ]; then
+        echo "Please provide both a minimum and maximum angle as command line arguments"
+        exit
+fi
+
+# If more than two command line arguments
+if [ "$#" -gt "3" ]; then
+        echo "Too many arguments, try again with minimum and maximum angle"
+fi
+
+rm tempmac seisdetails.dat
 mkdir done
 
 for seis in *fil
 do
+       # Extract epicentral distance
+        #echo echo on > sacmac.m
+        echo rh $seis > sacmac.m
+        echo "setbb gcarc &1,gcarc&" >> sacmac.m
+        echo "sc echo \" %gcarc \" > seisdetails.dat" >>sacmac.m
+        echo "quit" >> sacmac.m
 
-	rm  tempmac seisdetails.dat
+        /usr/local/sac/bin/sac sacmac.m
+        rm -fr sacmac.m
+        gcarc=`awk '{print $1}' seisdetails.dat`
+        rm seisdetails.dat
+
+        # Extract first three digits of angle
+        gcarc=${gcarc:0:3}
+        echo $gcarc
+
+        # If range of distances is specified
+        if [ "$#" == "2" ]; then
+
+                # Only process files within given range
+                if [ $gcarc -lt $minangle ]; then
+                        continue
+                fi
+                if [ $gcarc -gt $maxangle ]; then
+                        continue
+                fi
+                rm tempmac seisdetails.dat
+        fi
 
 	# Pick phase (stored in t6)
 	echo echo on > tempmac
