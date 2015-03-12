@@ -9,7 +9,7 @@
 
 # Set these to the phases that need to be automatically aligned
 # (ie. phases not being aligned)
-align1=PKIKP
+align1=both
 align2=PKiKP
 
 minangle=$1
