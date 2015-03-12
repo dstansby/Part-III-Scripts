@@ -8,11 +8,18 @@
 
 scriptdir=/raid1/ds598/scripts
 quakedir=`pwd`
+wkbjdir=/raid1/ds598/wkbjAutomator
 mkdir wkbj
 
-cd filt
+# Clean up the wkbj directory
+cd $wkbjdir
+./cleanup.sh
+
+# Prepare wkbjAutomator
+cd $quakedir/filt
 $scriptdir/wkbj/preparewkbjautomatorbasic.sh
 
+# Run wkbjAutomator
 cd /raid1/ds598/wkbjAutomator
 ./doall.sh
 
