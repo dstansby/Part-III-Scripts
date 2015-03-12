@@ -36,6 +36,6 @@ for dir in * ; do
 	$scriptdir/processing/timeheaderpopulate.sh
 	$scriptdir/sactoascii.sh
 	cd pswigascii
-	$scriptdir/tracesepi.sh 0.000001 1000 1200 115 135
+	$scriptdir/tracesepi.sh 0.000002 1050 1200 115 135
 	cd $quakedir/wkbj
 done
