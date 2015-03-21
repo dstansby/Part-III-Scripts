@@ -43,10 +43,11 @@ qdp off
         echo "quit" >> tempmac
 
         /usr/local/sac/bin/sac tempmac
-        rm -fr tempmac
+        rm tempmac
 
         # Extract picked phases
         diff=`awk '{print $1}' temp.dat`
+	rm temp.dat
 
 	if [ $diff == -12345 ]; then
 		echo "Not picked"
