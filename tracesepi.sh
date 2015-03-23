@@ -1,26 +1,17 @@
 #!/bin/bash
 # This gmt script makes a picture of binned epicentral distances
 
-if [ "$#" -ne 3 ]; then
-	if [ "$#" -ne 5 ]; then
-		echo "Please provide z-scaling, xmin and xmax as command line arguments and run again"
-		exit
-	fi
+if [ "$#" -ne 5 ]; then
+	echo "Please provide z-scaling, xmin and xmax as command line arguments and run again"
+	exit
 fi
 
 # Command line arguments
 zscaling=$1
 xminlim=$2
 xmaxlim=$3
-
-# If y limits have been given
-if [ "$#" -eq 5 ]; then
-	yminlim="$4"
-	ymaxlim="$5"
-else
-	yminlim=125
-	ymaxlim=135
-fi
+yminlim=$4
+ymaxlim=$5
 
 echo "Plotting epicentral range $yminlim to $ymaxlim"
 psxydir='../tauptraveltimecurve'
@@ -28,9 +19,6 @@ psxydir='../tauptraveltimecurve'
 # Define some colurs
 PKIKPCOL='0/0/255'
 PKiKPCOL='255/0/0'
-PKPCOL='34/139/34'
-pPKIKPCOL='255/215/0'
-pPKiKPCOL='255/20/147'
 
 o='-K -V -O'
 echo 0 0 | psxy -R1/2/1/2 -JX4.25/6.25 -Sp -K -P > stations.ps
