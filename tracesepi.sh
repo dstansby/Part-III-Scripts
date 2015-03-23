@@ -45,6 +45,12 @@ EOF
 	psxy $psxydir/*_PKIKP.yx -JX -R -W1p/${PKIKPCOL} $o >> stations.ps
 fi
 
+# Plot vertical line at t=0
+psxy -L -R -JX -W1p,. -O -K -N >> stations.ps << EOF
+0 $yminlim
+0 $ymaxlim
+EOF
+
 echo 0 0  | psxy -R1/2/1/2 -JX1/1 -Sp -O >>  stations.ps
 
 gv stations.ps &
