@@ -21,7 +21,7 @@ $scriptdir/wkbj/preparewkbjautomatorbasic.sh
 
 # Run wkbjAutomator
 cd /raid1/ds598/wkbjAutomator
-./doall.sh
+$scriptdir/wkbj/doall.sh
 
 # Move generated plots out of wkbjAutomator directory
 cd OUTPUT
