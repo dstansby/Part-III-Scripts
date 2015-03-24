@@ -4,11 +4,15 @@
 
 echo "Starting doall.sh"
 
+if [ "$#" -ne 1 ]; then
+	echo "Please provide earth model and run again"
+	exit
+fi
+
+earthModel=$1
+
 WKBJAUTOMATOR_LIB=/raid1/ds598/wkbjAutomator
 export WKBJAUTOMATOR_LIB
-
-# Set model to be used here
-earthModel=ak135
 
 if [ ! -d OUTPUT ]; then
 mkdir OUTPUT; fi
