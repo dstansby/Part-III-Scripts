@@ -1,12 +1,14 @@
 #! /bin/bash
 #
 # Runs wkbj and produces synthetics
-# Pass 1 to do just PKIKP, 2 to do just PKiKP or nothing to do both together
 
 echo "Starting doall.sh"
 
 WKBJAUTOMATOR_LIB=/raid1/ds598/wkbjAutomator
 export WKBJAUTOMATOR_LIB
+
+# Set model to be used here
+earthModel=ak135
 
 if [ ! -d OUTPUT ]; then
 mkdir OUTPUT; fi
@@ -94,7 +96,7 @@ do
 
 	for phases in PKIKP$layer PKiKP$layer PKIKP$layer,PKiKP$layer
 	do
-		./wkbjAutomatorL -v -e ak135.$layer -r $phases -d $date -s `awk '{print $0}' events/$cmtcode.$location`
+		./wkbjAutomatorL -v -e $earthModel.$layer -r $phases -d $date -s `awk '{print $0}' events/$cmtcode.$location`
 
 		for fname in `ls *.wkbj`
 			do
@@ -130,7 +132,7 @@ do
 	done
 	mv $cmtcode.$location OUTPUT
 
-	rm -fr sacmac.m depth.dat
+	rm sacmac.m depth.dat
 	mv events/$file done
-	rm -fr eventinfo.dat depth.dat file.dat
+	rm eventinfo.dat depth.dat file.dat
 done
