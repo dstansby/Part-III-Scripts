@@ -4,6 +4,14 @@
 
 rm  sacmac.m stationdetails.dat seisdetails.dat output.dat
 
+
+
+if [ "$#" -ne 1 ]; then
+	$earthModel=ak135
+else
+	$earthModel=$1
+fi
+
 for file in filt/*fil
 do
 
@@ -41,7 +49,7 @@ do
 		#echo $stla $stlo $evla $evlo $depth $stat
 
 		# Get the bottoming point for this model
-		/usr/local/TauP-2.1.1/bin/taup_pierce -turn -h $depth -ph PKIKP -sta  $stla $stlo -mod ak135 -evt $evla $evlo -o output.dat
+		/usr/local/TauP-2.1.1/bin/taup_pierce -turn -h $depth -ph PKIKP -sta  $stla $stlo -mod $earthModel -evt $evla $evlo -o output.dat
 
 		turndep=`awk '{if ( NR ==2 ) print $2}' output.dat`
 		turnlat=`awk '{if ( NR ==2 ) print $4}' output.dat`
@@ -49,7 +57,7 @@ do
 
 		# Get the pierce points for the inner core
 
-		/usr/local/TauP-2.1.1/bin/taup_pierce -h $depth -ph PKIKP -mod ak135 -sta  $stla $stlo  -evt $evla $evlo -o output.dat -nodiscon -pierce 5153.5
+		/usr/local/TauP-2.1.1/bin/taup_pierce -h $depth -ph PKIKP -mod $earthModel -sta  $stla $stlo  -evt $evla $evlo -o output.dat -nodiscon -pierce 5153.5
 
 		inlat=`awk '{if ( NR ==2 ) print $4}' output.dat`
 		outlat=`awk '{if ( NR ==3 ) print $4}' output.dat`
