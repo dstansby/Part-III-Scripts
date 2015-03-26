@@ -7,9 +7,9 @@ rm  sacmac.m stationdetails.dat seisdetails.dat output.dat
 
 
 if [ "$#" -ne 1 ]; then
-	$earthModel=ak135
+	earthModel=ak135
 else
-	$earthModel=$1
+	earthModel=$1
 fi
 
 for file in filt/*fil
