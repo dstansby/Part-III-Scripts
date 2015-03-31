@@ -34,7 +34,8 @@ $scriptdir/wkbj/doall.sh $earthModel
 # Move generated plots out of wkbjAutomator directory
 cd OUTPUT
 for dir in * ; do
-	mv $dir/* $quakedir/$earthModel/
+	cp $dir/* $quakedir/$earthModel/ -r
+	rm $dir -r
 done
 
 cd $quakedir/$earthModel
