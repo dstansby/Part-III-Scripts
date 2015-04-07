@@ -33,7 +33,7 @@ done
 
 #If residual data is available, plot residuals at bottoming points
 if [ -f filt/differences.dat ] && [ -f wkbj/PKiKP/filt/differences.dat ]; then
-	paste -d " " stationdetails.dat filt/differences.dat wkbj/PKiKP/filt/differences.dat > temp.dat
+	paste -d " " stationdetails_ak135.dat filt/differences.dat wkbj/PKiKP/filt/differences.dat > temp.dat
 
 	#Plot bottoming points
 	awk '{ print $13, $12, $19-$22, 0.2,"c" }' temp.dat | psxy $proj  -Cg.cpt -S $o >> map.ps
