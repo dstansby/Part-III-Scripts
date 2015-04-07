@@ -1,7 +1,7 @@
 #! /bin/bash
 # moverange.sh
 #
-# Moves files within the specified epicentral range to ./outofrange
+# Moves files greater than the specified epicentral range to ./outofrange
 #
 # David Stansby 2015
 
@@ -26,7 +26,7 @@ do
 	gcarc=${gcarc:0:3}
  	echo $gcarc
 
-	if [ $gcarc -lt $min ]; then
+	if [ $gcarc -gt $min ]; then
 		mv $seis outofrange
 	fi
 done
