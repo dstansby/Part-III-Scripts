@@ -29,8 +29,8 @@ echo "rh $seis
 qdp off
  setbb vert $seis
  rh %vert
- chnhdr t8 undef
- chnhdr kt8 undef
+# chnhdr t8 undef
+# chnhdr kt8 undef
  writehdr
  r %vert
  xlim -5 5
